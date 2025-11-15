@@ -1,6 +1,11 @@
 // script.js — Vanilla JS client
 
-const API = 'http://localhost:8000/api/articles'
+// Use environment variable or localhost for development
+const API_BASE = window.location.hostname === 'localhost' 
+  ? 'http://localhost:8000' 
+  : window.location.origin.replace('frontend', 'backend') || 'https://daily-ai-backend.onrender.com'
+
+const API = API_BASE + '/api/articles'
 const perPage = 6
 let articles = []
 let currentPage = 1
