@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Newspaper — Enhanced Edition</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- html2pdf (client-side PDF export) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <nav id="navbar" class="navbar">
+    <div class="brand">THE DAILY AI</div>
+    <div class="nav-controls">
+      <div class="filters">
+        <select id="categorySelect" aria-label="Filter by category">
+          <option value="all">All Categories</option>
+          <option value="india">🇮🇳 India</option>
+          <option value="world">🌍 World</option>
+          <option value="tech">💻 Tech</option>
+          <option value="sports">⚽ Sports</option>
+          <option value="business">💼 Business</option>
+        </select>
+        <button id="darkToggle" title="Toggle dark mode">🌙</button>
+      </div>
+      <div class="actions">
+        <button id="downloadBtn">📥 Download PDF</button>
+        <button id="shareBtn">🔗 Share</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-pattern"></div>
+    <div class="mast">
+      <div class="mast-left">
+        <h2>THE DAILY AI</h2>
+        <p class="sub">Enhanced Edition • <span id="dateSpan"></span></p>
+      </div>
+      <div class="mast-right">
+        <h1>News Summarized by AI</h1>
+        <p class="strap">✨ Neutral. Concise. Beautiful.</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="paper" class="paper">
+    <section id="topStories" class="section top-stories">
+      <!-- Lead article will be injected here -->
+      <div class="lead">
+        <div class="category-badge badge-tech">Technology</div>
+        <h2>AI Revolution Transforms Global Industries</h2>
+        <div class="meta">
+          <span>📅 Today</span>
+          <span>⏱️ 5 min read</span>
+          <span>👁️ 12.5k views</span>
+        </div>
+        <p>Artificial intelligence continues to reshape industries worldwide, with major breakthroughs in machine learning and natural language processing driving unprecedented innovation across sectors...</p>
+        <a href="#" class="read-more">Read full article →</a>
+      </div>
+
+      <div class="side-briefs">
+        <h4>📌 Quick Updates</h4>
+        <div class="brief-item">
+          <div class="category-badge badge-sports">Sports</div>
+          <h5>Championship Finals Set</h5>
+          <p>Major tournament reaches exciting conclusion</p>
+        </div>
+        <div class="brief-item">
+          <div class="category-badge badge-business">Business</div>
+          <h5>Markets Hit New Highs</h5>
+          <p>Global indices show strong performance</p>
+        </div>
+        <div class="brief-item">
+          <div class="category-badge badge-world">World</div>
+          <h5>Climate Summit Progress</h5>
+          <p>Nations agree on emission targets</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="articlesGrid" class="section articles-grid">
+      <!-- Article cards will be injected here -->
+      <div class="card" data-category="tech">
+        <div class="card-header">
+          <div class="category-badge badge-tech">Technology</div>
+          <div class="card-meta">⏱️ 3 min read</div>
+        </div>
+        <h3>Quantum Computing Breakthrough</h3>
+        <p>Scientists achieve new milestone in quantum processing, potentially revolutionizing computational capabilities for complex problem-solving...</p>
+        <div class="card-footer">
+          <span class="timestamp">📅 2 hours ago</span>
+          <a href="#" class="read-link">Read more →</a>
+        </div>
+      </div>
+
+      <div class="card" data-category="india">
+        <div class="card-header">
+          <div class="category-badge badge-india">India</div>
+          <div class="card-meta">⏱️ 4 min read</div>
+        </div>
+        <h3>Infrastructure Development Surge</h3>
+        <p>Government announces major infrastructure projects across multiple states, focusing on transportation and digital connectivity...</p>
+        <div class="card-footer">
+          <span class="timestamp">📅 4 hours ago</span>
+          <a href="#" class="read-link">Read more →</a>
+        </div>
+      </div>
+
+      <div class="card" data-category="world">
+        <div class="card-header">
+          <div class="category-badge badge-world">World</div>
+          <div class="card-meta">⏱️ 6 min read</div>
+        </div>
+        <h3>International Trade Agreements</h3>
+        <p>New partnerships formed between major economic powers, aimed at strengthening global supply chains and economic cooperation...</p>
+        <div class="card-footer">
+          <span class="timestamp">📅 6 hours ago</span>
+          <a href="#" class="read-link">Read more →</a>
+        </div>
+      </div>
+
+      <div class="card" data-category="sports">
+        <div class="card-header">
+          <div class="category-badge badge-sports">Sports</div>
+          <div class="card-meta">⏱️ 2 min read</div>
+        </div>
+        <h3>Olympic Preparations Underway</h3>
+        <p>Athletes from around the world intensify training as the next Olympic Games approach, with new records expected...</p>
+        <div class="card-footer">
+          <span class="timestamp">📅 8 hours ago</span>
+          <a href="#" class="read-link">Read more →</a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="pagination" id="pagination">
+      <button class="page-btn">← Previous</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">Next →</button>
+    </nav>
+
+    <footer class="paper-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>THE DAILY AI</h3>
+          <p>Your trusted source for AI-curated news</p>
+        </div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 THE DAILY AI — Generated Automatically</p>
+        <p>✨ Developed by Sanjay Panneerselvan</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Set current date
+    document.getElementById('dateSpan').textContent = new Date().toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    // Dark mode toggle
+    document.getElementById('darkToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const btn = document.getElementById('darkToggle');
+      btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+
+    // Category filter
+    document.getElementById('categorySelect').addEventListener('change', (e) => {
+      const category = e.target.value;
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

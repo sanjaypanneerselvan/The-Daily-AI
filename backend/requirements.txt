@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+feedparser
+newspaper3k
+transformers
+torch
+sentencepiece
+python-multipart
+httpx
+python-dotenv
