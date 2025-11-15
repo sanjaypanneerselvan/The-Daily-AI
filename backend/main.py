@@ -1,6 +1,7 @@
 # backend/main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import feedparser
 from newspaper import Article
@@ -10,6 +11,7 @@ import asyncio
 import httpx
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()
 
@@ -133,5 +135,10 @@ async def get_articles(limit: int = 12):
 @app.get('/api/health')
 async def health():
     return {"status": "ok"}
+
+# Serve frontend static files
+frontend_path = Path(__file__).parent.parent / "frontend"
+if frontend_path.exists():
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
 
 # To run: uvicorn main:app --reload --port 8000
